@@ -1,16 +1,31 @@
-const click = function() {
-    console.log("click");
+//function flips the card clicked
+const flipCard = function (card) {
+    card.srcElement.classList.toggle("open");
+    card.srcElement.classList.toggle("show");
 }
 
 /*
  * Create a list that holds all of your cards
  */
+//Deck NodeList
 let deck = document.querySelectorAll("li");
+//Deck Array
 let deckArray = [];
-for (let i = 0; i < deck.length; i++) {
-    deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
+
+
+function makeDeckArray() {
+    for (let i = 0; i < deck.length; i++) {
+        deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
+
+        for (let i = 0; i < deck.length; i++) {
+            deck[i].addEventListener("click", flipCard);
+        }
+    }
 }
-console.log(deckArray);
+
+makeDeckArray();
+
+
 
 /*
  * Display the cards on the page
@@ -19,23 +34,7 @@ console.log(deckArray);
  *   - add each card's HTML to the page
  */
 const deal = function () {
-    console.log(deck);
-    console.log(deck.item("outerHTML"));
-    /*
-    let dealtCards = "";
-
-
-    for (let i = 0; i < deck.length; i++) {
-        dealtCards += deck.item("outerHTML");
-        console.log(dealtCards)
-    }
-
-    document.querySelector("#deck").innerHTML;
-    */
-}
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle() {
+    //shuffle the list
     let currentIndex = deckArray.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -46,18 +45,30 @@ function shuffle() {
         deckArray[randomIndex] = temporaryValue;
     }
 
-    return deckArray;
+    //loop through each card and create its HTML
+    let dealtCards = "";
+
+    for (let i = 0; i < deckArray.length; i++) {
+        dealtCards += deckArray[i]
+    }
+
+    //add cards' HTML to the page
+    document.querySelector("#deck").innerHTML = dealtCards;
+
+    //add "Click a card" event listeners
+    for (let i = 0; i < deck.length; i++) {
+        deck[i].addEventListener("click", flipCard);
+    }
+
+    deck = document.querySelectorAll("li");
+    makeDeckArray()
 }
+
+//"Restart" event listener
 const restart = document.querySelector(".restart");
 restart.addEventListener("click", deal);
 
-const flipCard = function (card) {
-    card.srcElement.classList.toggle("open");
-    card.srcElement.classList.toggle("show");
-}
-
-
-
+//"Click a card" event listener
 for (let i = 0; i < deck.length; i++) {
     deck[i].addEventListener("click", flipCard);
 }
