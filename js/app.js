@@ -2,6 +2,7 @@
 const flipCard = function (card) {
     card.srcElement.classList.toggle("open");
     card.srcElement.classList.toggle("show");
+    openCards.push(card.srcElement.outerHTML);
 }
 
 /*
@@ -11,7 +12,8 @@ const flipCard = function (card) {
 let deck = document.querySelectorAll("li");
 //Deck Array
 let deckArray = [];
-
+//Array of "open" cards
+let openCards = [];
 
 function makeDeckArray() {
     for (let i = 0; i < deck.length; i++) {
@@ -62,6 +64,7 @@ const deal = function () {
 
     deck = document.querySelectorAll("li");
     makeDeckArray()
+    openCards = [];
 }
 
 //"Restart" event listener
