@@ -6,7 +6,11 @@ const click = function() {
  * Create a list that holds all of your cards
  */
 let deck = document.querySelectorAll("li");
-console.log(deck);
+let deckArray = [];
+for (let i = 0; i < deck.length; i++) {
+    deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
+}
+console.log(deckArray);
 
 /*
  * Display the cards on the page
@@ -14,23 +18,38 @@ console.log(deck);
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+const deal = function () {
+    console.log(deck);
+    console.log(deck.item("outerHTML"));
+    /*
+    let dealtCards = "";
 
-    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    for (let i = 0; i < deck.length; i++) {
+        dealtCards += deck.item("outerHTML");
+        console.log(dealtCards)
+    }
+
+    document.querySelector("#deck").innerHTML;
+    */
+}
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle() {
+    let currentIndex = deckArray.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = deckArray[currentIndex];
+        deckArray[currentIndex] = deckArray[randomIndex];
+        deckArray[randomIndex] = temporaryValue;
     }
 
-    return array;
+    return deckArray;
 }
 const restart = document.querySelector(".restart");
-restart.addEventListener("click", shuffle(deck));
+restart.addEventListener("click", deal);
 
 const flipCard = function (card) {
     card.srcElement.classList.toggle("open");
@@ -40,7 +59,6 @@ const flipCard = function (card) {
 
 
 for (let i = 0; i < deck.length; i++) {
-    //console.log(deck[i]);
     deck[i].addEventListener("click", flipCard);
 }
 
