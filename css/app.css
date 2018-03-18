@@ -76,3 +76,8 @@ h1 {
     background: #8e8;
     font-size: 33px;
 }
+
+.restart {
+    float: right;
+    cursor: pointer;
+}
