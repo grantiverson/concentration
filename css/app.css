@@ -80,4 +80,5 @@ h1 {
 .restart {
     float: right;
     cursor: pointer;
+    margin-left: 20px;
 }

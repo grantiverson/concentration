@@ -1,10 +1,12 @@
 const click = function() {
     console.log("click");
 }
+
 /*
  * Create a list that holds all of your cards
  */
 let deck = document.querySelectorAll("li");
+console.log(deck);
 
 /*
  * Display the cards on the page
@@ -12,13 +14,9 @@ let deck = document.querySelectorAll("li");
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-
-
- const restart = document.querySelector(".restart");
- restart.addEventListener("click", click);
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
+
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -31,6 +29,8 @@ function shuffle(array) {
 
     return array;
 }
+const restart = document.querySelector(".restart");
+restart.addEventListener("click", shuffle(deck));
 
 const flipCard = function (card) {
     card.srcElement.classList.toggle("open");
