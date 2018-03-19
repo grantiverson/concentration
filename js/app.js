@@ -1,5 +1,4 @@
 /* FUNCTIONS */
-
 //function shows the card clicked
 const showCard = function (card) {
     if (openCards.length > 1) {                 // if there is more than one "open" card, hide the cards
