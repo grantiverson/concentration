@@ -11,6 +11,7 @@ const showCard = function (card) {
     }
 }
 
+//function adds ".match" if two cards match
 const checkCards = function () {
     for (var i = 0; i < openCards.length; i++) {
         for (var j = 0; j < openCards.length; j++) {
@@ -22,6 +23,7 @@ const checkCards = function () {
 
 }
 
+//hides all "shown" cards
 const hideCards = function () {
     for (var i = 0; i < deckArray.length; i++) {
         deck[i].classList.remove("show");
@@ -31,16 +33,15 @@ const hideCards = function () {
     openCards = [];
 }
 
-/*
- * Create a list that holds all of your cards
- */
-//Deck NodeList
+
+//NodeList of cards
 let deck = document.querySelectorAll("li");
-//Deck Array
+//Array of cards
 let deckArray = [];
 //Array of "open" cards
 let openCards = [];
 
+//function generates the deck array
 function makeDeckArray() {
     for (let i = 0; i < deck.length; i++) {
         deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
@@ -61,6 +62,7 @@ makeDeckArray();
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+//function rearranges the order of the cards on the page
 const deal = function () {
     //shuffle the list
     let currentIndex = deckArray.length, temporaryValue, randomIndex;
@@ -88,12 +90,13 @@ const deal = function () {
         deck[i].addEventListener("click", showCard);
     }
 
+    //re-generates the deck array and hides all cards
     deck = document.querySelectorAll("li");
     makeDeckArray();
     hideCards();
 }
 
-deal();
+//deal();
 
 //"Restart" event listener
 const restart = document.querySelector(".restart");
