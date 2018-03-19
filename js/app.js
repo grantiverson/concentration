@@ -86,11 +86,13 @@ const counterUp = function () {
     }
 };
 
-//function that creates an alert when all matches have been made
+//function that creates a modal when all matches have been made
 const finished = function () {
     setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
-            alert("You won with " + moves + " moves!");              // allows the last pair of cards does not display as matching
+            const playAgain = confirm("You won with " + moves + " moves!\nPress OK to play again!");              // allows the last pair of cards does not display as matching
+            if (playAgain) {
                 deal();
+            }
         }, 100);
 };
 
