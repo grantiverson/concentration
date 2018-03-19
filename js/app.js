@@ -1,3 +1,5 @@
+/* FUNCTIONS */
+
 //function shows the card clicked
 const showCard = function (card) {
     if (openCards.length > 1) {
@@ -12,6 +14,14 @@ const showCard = function (card) {
 
     moves++;
     document.querySelector("span").textContent = moves;
+
+
+    setTimeout(function() {
+        if (document.querySelectorAll(".match").length === 16) {
+            alert("You won with " + moves + " moves!");
+            deal();
+        }
+    }, 100);
 }
 
 //function adds ".match" if two cards match
@@ -36,38 +46,6 @@ const hideCards = function () {
     openCards = [];
 }
 
-
-//NodeList of cards
-let deck = document.querySelectorAll("li");
-//Array of cards
-let deckArray = [];
-//Array of "open" cards
-let openCards = [];
-
-//Move counter
-let moves = 0;
-
-//function generates the deck array
-function makeDeckArray() {
-    for (let i = 0; i < deck.length; i++) {
-        deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
-
-        for (let i = 0; i < deck.length; i++) {
-            deck[i].addEventListener("click", showCard);
-        }
-    }
-}
-
-makeDeckArray();
-
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 //function rearranges the order of the cards on the page
 const deal = function () {
     //shuffle the list
@@ -100,7 +78,36 @@ const deal = function () {
     deck = document.querySelectorAll("li");
     makeDeckArray();
     hideCards();
+    moves = 0;
+    document.querySelector("span").textContent = moves;
 }
+
+//function generates the deck array
+function makeDeckArray() {
+    for (let i = 0; i < deck.length; i++) {
+        deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
+
+        for (let i = 0; i < deck.length; i++) {
+            deck[i].addEventListener("click", showCard);
+        }
+    }
+}
+
+/* VARIABLES */
+
+//NodeList of cards
+let deck = document.querySelectorAll("li");
+//Array of cards
+let deckArray = [];
+//Array of "open" cards
+let openCards = [];
+
+//Move counter
+let moves = 0;
+
+/* OTHER CODE */
+
+makeDeckArray();
 
 //deal();
 
@@ -112,6 +119,8 @@ restart.addEventListener("click", deal);
 for (let i = 0; i < deck.length; i++) {
     deck[i].addEventListener("click", showCard);
 }
+
+
 
 
 /*
