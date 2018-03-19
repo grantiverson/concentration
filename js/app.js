@@ -12,16 +12,7 @@ const showCard = function (card) {
         checkCards();
     }
 
-    moves++;
-    document.querySelector("span").textContent = moves;
-
-
-    setTimeout(function() {
-        if (document.querySelectorAll(".match").length === 16) {
-            alert("You won with " + moves + " moves!");
-            deal();
-        }
-    }, 100);
+    counterUp();
 }
 
 //function adds ".match" if two cards match
@@ -93,6 +84,20 @@ function makeDeckArray() {
     }
 }
 
+//function that controls the counter
+const counterUp = function () {
+    moves++;
+    document.querySelector("span").textContent = moves;
+
+
+    setTimeout(function() {
+        if (document.querySelectorAll(".match").length === 16) {
+            alert("You won with " + moves + " moves!");
+            deal();
+        }
+    }, 100);
+}
+
 /* VARIABLES */
 
 //NodeList of cards
@@ -125,8 +130,6 @@ for (let i = 0; i < deck.length; i++) {
 
 /*
  * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
  *  - if the list already has another card, check to see if the two cards match
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
