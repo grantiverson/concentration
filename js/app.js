@@ -93,6 +93,8 @@ const deal = function () {
     hideCards();
 }
 
+deal();
+
 //"Restart" event listener
 const restart = document.querySelector(".restart");
 restart.addEventListener("click", deal);
