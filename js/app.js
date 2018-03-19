@@ -88,12 +88,22 @@ const counterUp = function () {
 //function that creates a modal when all matches have been made
 const finished = function () {
     setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
-            const playAgain = confirm("You won with " + moves + " moves!\nPress OK to play again!");              // allows the last pair of cards does not display as matching
-            if (playAgain) {
-                deal();
-            }
-        }, 100);
+        const playAgain = confirm("You won with " + moves + " moves!\nPress OK to play again!");              // allows the last pair of cards does not display as matching
+        if (playAgain) {
+            deal();
+        }
+    }, 100);
 };
+
+//makes timer counter work
+const timerUp = function () {
+    seconds++;
+    console.log(seconds);
+}
+
+setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
+    timerUp();
+}, 1000);
 
 /* VARIABLES */
 
@@ -106,6 +116,9 @@ let openCards = [];
 
 //Move counter
 let moves = 0;
+
+//variables for timer
+let minutes = 0, seconds = 0;
 
 /* OTHER CODE */
 
