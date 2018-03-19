@@ -2,47 +2,43 @@
 
 //function shows the card clicked
 const showCard = function (card) {
-    if (openCards.length > 1) {
+    if (openCards.length > 1) {                 // if there is more than one "open" card, hide the cards
         hideCards();
     }
-    card.srcElement.classList.add("open");
+    card.srcElement.classList.add("open");      // adds "open" and "show" classes to clicked cards
     card.srcElement.classList.add("show");
-    openCards.push(card.srcElement.outerHTML);
-    if (openCards.length > 1) {
+    openCards.push(card.srcElement.outerHTML);  // adds the clicked card to the "open" card list
+    if (openCards.length > 1) {                 // if there is more than one "open" card, check to see if the cards match
         checkCards();
     }
-
-    counterUp();
+    counterUp();                                // increment the move counter
 }
 
 //function adds ".match" if two cards match
 const checkCards = function () {
-    for (var i = 0; i < openCards.length; i++) {
-        for (var j = 0; j < openCards.length; j++) {
+    for (var i = 0; i < openCards.length; i++) {                                // iterate through the possible combinations of "open" cards
+        for (var j = 0; j < openCards.length; j++) {                            // looking for a matched pair
             if (openCards[i] === openCards[j] && i != j) {
-                document.querySelectorAll(".open")[j].classList.add("match")
+                document.querySelectorAll(".open")[j].classList.add("match")    // if two match, adds "match" class
             }
         }
     }
-
 }
 
 //hides all "shown" cards
 const hideCards = function () {
-    for (var i = 0; i < deckArray.length; i++) {
+    for (var i = 0; i < deckArray.length; i++) {    // iterates through "deck" removing "show" and "open" classes
         deck[i].classList.remove("show");
         deck[i].classList.remove("open");
     }
 
-    openCards = [];
+    openCards = [];                                 // resets the list of "open" cards to empty
 }
 
 //function rearranges the order of the cards on the page
 const deal = function () {
-    //shuffle the list
-    let currentIndex = deckArray.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
+    let currentIndex = deckArray.length, temporaryValue, randomIndex;   // code provided by project documentation
+    while (currentIndex !== 0) {                                        // shuffles the list
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
         temporaryValue = deckArray[currentIndex];
@@ -50,35 +46,32 @@ const deal = function () {
         deckArray[randomIndex] = temporaryValue;
     }
 
-    //loop through each card and create its HTML
-    let dealtCards = "";
+    let dealtCards = "";                                                // variable that will store "card" HTML text
 
-    for (let i = 0; i < deckArray.length; i++) {
-        dealtCards += deckArray[i]
+    for (let i = 0; i < deckArray.length; i++) {                        // concatinates the "cards" array into one string
+        dealtCards += deckArray[i]                                      // by looping through each card and adding its HTML
     }
 
-    //add cards' HTML to the page
-    document.querySelector("#deck").innerHTML = dealtCards;
+    document.querySelector("#deck").innerHTML = dealtCards;             // inserts "cards" HTML string into index.html's deck ul tag
 
-    //add "Click a card" event listeners
-    for (let i = 0; i < deck.length; i++) {
+    for (let i = 0; i < deck.length; i++) {                             // adds "Click a card" event listeners
         deck[i].addEventListener("click", showCard);
     }
 
     //re-generates the deck array and hides all cards
-    deck = document.querySelectorAll("li");
-    makeDeckArray();
-    hideCards();
+    deck = document.querySelectorAll("li");                             // stores the new HTML in the "deck" variable
+    makeDeckArray();                                                    // turns the new "card" HTML into a new array
+    hideCards();                                                        // removes any "show" and "open" classes from deleted HTML
     moves = 0;
-    document.querySelector("span").textContent = moves;
+    document.querySelector("span").textContent = moves;                 // resets the moves counter to 0
 }
 
 //function generates the deck array
 function makeDeckArray() {
-    for (let i = 0; i < deck.length; i++) {
+    for (let i = 0; i < deck.length; i++) {                             // iterates through li items and stores their HTML as an array element
         deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
 
-        for (let i = 0; i < deck.length; i++) {
+        for (let i = 0; i < deck.length; i++) {                         // iterates through array elements and adds event listeners
             deck[i].addEventListener("click", showCard);
         }
     }
@@ -87,7 +80,7 @@ function makeDeckArray() {
 //function that controls the counter
 const counterUp = function () {
     moves++;
-    document.querySelector("span").textContent = moves;
+    document.querySelector("span").textContent = moves;         // replaces the HTML in the span element with the number of moves
     if (document.querySelectorAll(".match").length === 16) {
         finished();
     }
@@ -95,8 +88,8 @@ const counterUp = function () {
 
 //function that creates an alert when all matches have been made
 const finished = function () {
-    setTimeout(function() {
-            alert("You won with " + moves + " moves!");
+    setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
+            alert("You won with " + moves + " moves!");              // allows the last pair of cards does not display as matching
                 deal();
         }, 100);
 }
