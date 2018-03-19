@@ -12,7 +12,7 @@ const showCard = function (card) {
         checkCards();
     }
     counterUp();                                // increment the move counter
-}
+};
 
 //function adds ".match" if two cards match
 const checkCards = function () {
@@ -23,7 +23,7 @@ const checkCards = function () {
             }
         }
     }
-}
+};
 
 //hides all "shown" cards
 const hideCards = function () {
@@ -33,7 +33,7 @@ const hideCards = function () {
     }
 
     openCards = [];                                 // resets the list of "open" cards to empty
-}
+};
 
 //function rearranges the order of the cards on the page
 const deal = function () {
@@ -49,7 +49,7 @@ const deal = function () {
     let dealtCards = "";                                                // variable that will store "card" HTML text
 
     for (let i = 0; i < deckArray.length; i++) {                        // concatinates the "cards" array into one string
-        dealtCards += deckArray[i]                                      // by looping through each card and adding its HTML
+        dealtCards += deckArray[i];                                     // by looping through each card and adding its HTML
     }
 
     document.querySelector("#deck").innerHTML = dealtCards;             // inserts "cards" HTML string into index.html's deck ul tag
@@ -64,7 +64,7 @@ const deal = function () {
     hideCards();                                                        // removes any "show" and "open" classes from deleted HTML
     moves = 0;
     document.querySelector("span").textContent = moves;                 // resets the moves counter to 0
-}
+};
 
 //function generates the deck array
 function makeDeckArray() {
@@ -84,7 +84,7 @@ const counterUp = function () {
     if (document.querySelectorAll(".match").length === 16) {
         finished();
     }
-}
+};
 
 //function that creates an alert when all matches have been made
 const finished = function () {
@@ -92,7 +92,7 @@ const finished = function () {
             alert("You won with " + moves + " moves!");              // allows the last pair of cards does not display as matching
                 deal();
         }, 100);
-}
+};
 
 /* VARIABLES */
 
