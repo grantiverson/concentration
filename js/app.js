@@ -9,6 +9,9 @@ const showCard = function (card) {
     if (openCards.length > 1) {
         checkCards();
     }
+
+    moves++;
+    document.querySelector("span").textContent = moves;
 }
 
 //function adds ".match" if two cards match
@@ -40,6 +43,9 @@ let deck = document.querySelectorAll("li");
 let deckArray = [];
 //Array of "open" cards
 let openCards = [];
+
+//Move counter
+let moves = 0;
 
 //function generates the deck array
 function makeDeckArray() {
