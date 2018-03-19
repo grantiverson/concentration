@@ -117,7 +117,7 @@ let moves = 0;
 
 makeDeckArray();
 
-//deal();
+deal();
 
 //"Restart" event listener
 const restart = document.querySelector(".restart");
