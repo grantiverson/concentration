@@ -1,13 +1,25 @@
 //function shows the card clicked
 const showCard = function (card) {
+    if (openCards.length > 1) {
+        hideCards();
+    }
     card.srcElement.classList.add("open");
     card.srcElement.classList.add("show");
     openCards.push(card.srcElement.outerHTML);
-    console.log("show cards")
-
     if (openCards.length > 1) {
-        checkCards()
+        checkCards();
     }
+}
+
+const checkCards = function () {
+    for (var i = 0; i < openCards.length; i++) {
+        for (var j = 0; j < openCards.length; j++) {
+            if (openCards[i] === openCards[j] && i != j) {
+                document.querySelectorAll(".open")[j].classList.add("match")
+            }
+        }
+    }
+
 }
 
 const hideCards = function () {
@@ -16,24 +28,8 @@ const hideCards = function () {
         deck[i].classList.remove("open");
     }
 
-    console.log("hide cards");
-    openCards = []
+    openCards = [];
 }
-
-const checkCards = function () {
-    for (var i = 0; i < openCards.length; i++) {
-        for (var j = 0; j < openCards.length; j++) {
-            if (openCards[i] === openCards[j] && i != j) {
-                console.log(document.querySelectorAll(".open")[j]);
-                document.querySelectorAll(".open")[j].classList.add("match")
-            }
-        }
-    }
-
-    hideCards()
-}
-
-
 
 /*
  * Create a list that holds all of your cards
@@ -93,7 +89,7 @@ const deal = function () {
     }
 
     deck = document.querySelectorAll("li");
-    makeDeckArray()
+    makeDeckArray();
     hideCards();
 }
 
