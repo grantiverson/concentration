@@ -1,12 +1,13 @@
 /* FUNCTIONS */
 //function shows the card clicked
 const showCard = function (card) {
-    if (openCards.length > 1) {                 // if there is more than one "open" card, hide the cards
+    openCards.push(card.srcElement.outerHTML);  // adds the clicked card to the "open" card list
+    if (openCards.length > 2) {                 // if there is more than one "open" card, hide the cards
         hideCards();
+        return;
     }
     card.srcElement.classList.add("open");      // adds "open" and "show" classes to clicked cards
     card.srcElement.classList.add("show");
-    openCards.push(card.srcElement.outerHTML);  // adds the clicked card to the "open" card list
     if (openCards.length > 1) {                 // if there is more than one "open" card, check to see if the cards match
         checkCards();
     }
@@ -18,7 +19,7 @@ const checkCards = function () {
     for (var i = 0; i < openCards.length; i++) {                                // iterate through the possible combinations of "open" cards
         for (var j = 0; j < openCards.length; j++) {                            // looking for a matched pair
             if (openCards[i] === openCards[j] && i != j) {
-                document.querySelectorAll(".open")[j].classList.add("match")    // if two match, adds "match" class
+                document.querySelectorAll(".open")[j].classList.add("match");   // if two match, adds "match" class
             }
         }
     }
@@ -101,7 +102,7 @@ const timerUp = function () {
     console.log(seconds);
 }
 
-setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
+setTimeout(function() {
     timerUp();
 }, 1000);
 
