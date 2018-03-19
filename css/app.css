@@ -8,6 +8,14 @@ html {
     box-sizing: inherit;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 /* PAGE */
 body {
     background: #fff url('../img/memphis-colorful.png'); /* Background pattern from Subtle Patterns */
