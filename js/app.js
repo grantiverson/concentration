@@ -22,11 +22,15 @@ const hideCards = function () {
 
 const checkCards = function () {
     for (var i = 0; i < openCards.length; i++) {
-        openCards[i];
+        for (var j = 0; j < openCards.length; j++) {
+            if (openCards[i] === openCards[j] && i != j) {
+                console.log(document.querySelectorAll(".open")[j]);
+                document.querySelectorAll(".open")[j].classList.add("match")
+            }
+        }
     }
-    if (openCards.length > 2) {
-        hideCards()
-    }
+
+    hideCards()
 }
 
 
