@@ -1,9 +1,35 @@
-//function flips the card clicked
-const flipCard = function (card) {
-    card.srcElement.classList.toggle("open");
-    card.srcElement.classList.toggle("show");
+//function shows the card clicked
+const showCard = function (card) {
+    card.srcElement.classList.add("open");
+    card.srcElement.classList.add("show");
     openCards.push(card.srcElement.outerHTML);
+    console.log("show cards")
+
+    if (openCards.length > 1) {
+        checkCards()
+    }
 }
+
+const hideCards = function () {
+    for (var i = 0; i < deckArray.length; i++) {
+        deck[i].classList.remove("show");
+        deck[i].classList.remove("open");
+    }
+
+    console.log("hide cards");
+    openCards = []
+}
+
+const checkCards = function () {
+    for (var i = 0; i < openCards.length; i++) {
+        openCards[i];
+    }
+    if (openCards.length > 2) {
+        hideCards()
+    }
+}
+
+
 
 /*
  * Create a list that holds all of your cards
@@ -20,7 +46,7 @@ function makeDeckArray() {
         deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
 
         for (let i = 0; i < deck.length; i++) {
-            deck[i].addEventListener("click", flipCard);
+            deck[i].addEventListener("click", showCard);
         }
     }
 }
@@ -59,12 +85,12 @@ const deal = function () {
 
     //add "Click a card" event listeners
     for (let i = 0; i < deck.length; i++) {
-        deck[i].addEventListener("click", flipCard);
+        deck[i].addEventListener("click", showCard);
     }
 
     deck = document.querySelectorAll("li");
     makeDeckArray()
-    openCards = [];
+    hideCards();
 }
 
 //"Restart" event listener
@@ -73,7 +99,7 @@ restart.addEventListener("click", deal);
 
 //"Click a card" event listener
 for (let i = 0; i < deck.length; i++) {
-    deck[i].addEventListener("click", flipCard);
+    deck[i].addEventListener("click", showCard);
 }
 
 
