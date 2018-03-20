@@ -62,8 +62,7 @@ const deal = function () {
     hideCards();                                                        // removes any "show" and "open" classes from deleted HTML
     moves = 0;
     document.querySelector("span").textContent = moves;                 // resets the moves counter to 0
-    minutes = 0;
-    seconds = 0;                                                        // resets the timer
+    resetTimer();                                                        // resets the timer
     resetStarRating();                                                          // resets the stars counter
 };
 
@@ -104,24 +103,30 @@ const finished = function () {
 
 //makes timer counter work
 const timerUp = function () {
-    if (seconds < 10) {                             // adds leading 0 if necessary then adds text to HTML
-        secondsHTML.textContent = "0" + seconds;
-    } else{
-        secondsHTML.textContent = seconds;
-    }
-
-    seconds++;
     if (seconds == 60) {
         seconds = 0;                                // increments minutes
         minutes++;
         minutesHTML.textContent = minutes;
     }
+    if (seconds < 10) {                             // adds leading 0 if necessary then adds text to HTML
+        secondsHTML.textContent = "0" + seconds;
+    } else{
+        secondsHTML.textContent = seconds;
+    }
+    seconds++;
 }
 
 //part of the timer
 var timerInterval = setInterval(function() {
     timerUp();                  // runs timerUp ever 1 second
 }, 1000);
+
+const resetTimer = function () {
+    minutes = 0;
+    seconds = 0;
+    minutesHTML.textContent = minutes;
+    minutesHTML.textContent = seconds;
+}
 
 const starRating = function () {
     if (moves === 25) {
