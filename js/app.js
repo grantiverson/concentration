@@ -93,7 +93,7 @@ const movesUp = function () {
 //function that creates a modal when all matches have been made
 const finished = function () {
     setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
-        const playAgain = confirm("You won after " + moves + " moves!\nYou got " + stars + " stars.\nYour time was " + minutes + ":" + (seconds - 1) + "\nPress OK to play again!");              // allows the last pair of cards does not display as matching
+        const playAgain = confirm("You won after " + moves + " moves!\nYou got " + stars + " stars.\nYour time was " + minutes + ":" + seconds + "\nPress OK to play again!");              // allows the last pair of cards does not display as matching
         if (playAgain) {
             deal();
         }
