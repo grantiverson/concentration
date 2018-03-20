@@ -1,13 +1,15 @@
 /* FUNCTIONS */
 //function shows the card clicked
 const showCard = function (card) {
-    openCards.push(card.srcElement.outerHTML);  // adds the clicked card to the "open" card list
-    if (openCards.length > 2) {                 // if there is more than one "open" card, hide the cards
-        hideCards();
+    if (card.srcElement.classList.contains("open")) {
         return;
+    }
+    if (openCards.length > 1) {                 // if there is more than one "open" card, hide the cards
+        hideCards();
     }
     card.srcElement.classList.add("open");      // adds "open" and "show" classes to clicked cards
     card.srcElement.classList.add("show");
+    openCards.push(card.srcElement.outerHTML);  // adds the clicked card to the "open" card list
     if (openCards.length > 1) {                 // if there is more than one "open" card, check to see if the cards match
         checkCards();
     }
@@ -16,12 +18,9 @@ const showCard = function (card) {
 
 //function adds ".match" if two cards match
 const checkCards = function () {
-    for (var i = 0; i < openCards.length; i++) {                                // iterate through the possible combinations of "open" cards
-        for (var j = 0; j < openCards.length; j++) {                            // looking for a matched pair
-            if (openCards[i] === openCards[j] && i != j) {
-                document.querySelectorAll(".open")[j].classList.add("match");   // if two match, adds "match" class
-            }
-        }
+    if (openCards[0] === openCards[1]) {
+        document.querySelectorAll(".open")[0].classList.add("match");   // if two match, adds "match" class
+        document.querySelectorAll(".open")[1].classList.add("match");
     }
 };
 
@@ -95,16 +94,6 @@ const finished = function () {
         }
     }, 100);
 };
-
-//makes timer counter work
-const timerUp = function () {
-    seconds++;
-    console.log(seconds);
-}
-
-setTimeout(function() {
-    timerUp();
-}, 1000);
 
 /* VARIABLES */
 
