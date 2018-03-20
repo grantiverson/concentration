@@ -8,13 +8,10 @@ When you click a card, it will flip over to display a symbol. If you flip over t
 
 ## Scoring
 
-3 stars - 25 moves or less
-
-2 stars - 26 to 35 moves
-
-1 stars - 36 to 45 moves
-
-0 stars - 46 or more moves
+* 3 stars - 25 moves or less
+* 2 stars - 26 to 35 moves
+* 1 stars - 36 to 45 moves
+* 0 stars - 46 or more moves
 
 ## Getting started
 
