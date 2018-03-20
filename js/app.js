@@ -58,7 +58,6 @@ const deal = function () {
     }
 
     //re-generates the deck array and hides all cards
-    deck = document.querySelectorAll("li");                             // stores the new HTML in the "deck" variable
     makeDeckArray();                                                    // turns the new "card" HTML into a new array
     hideCards();                                                        // removes any "show" and "open" classes from deleted HTML
     moves = 0;
@@ -69,8 +68,9 @@ const deal = function () {
 
 //function generates the deck array
 function makeDeckArray() {
+    deck = document.querySelectorAll("#deck li");                             // stores the new HTML in the "deck" variable
     for (let i = 0; i < deck.length; i++) {                             // iterates through li items and stores their HTML as an array element
-        deckArray[i] = document.querySelectorAll("li")[i].outerHTML;
+        deckArray[i] = deck[i].outerHTML;
 
         for (let i = 0; i < deck.length; i++) {                         // iterates through array elements and adds event listeners
             deck[i].addEventListener("click", showCard);
@@ -120,7 +120,7 @@ setInterval( function() {
 /* VARIABLES */
 
 //NodeList of cards
-let deck = document.querySelectorAll("li");
+let deck;
 //Array of cards
 let deckArray = [];
 //Array of "open" cards
