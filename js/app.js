@@ -63,6 +63,8 @@ const deal = function () {
     hideCards();                                                        // removes any "show" and "open" classes from deleted HTML
     moves = 0;
     document.querySelector("span").textContent = moves;                 // resets the moves counter to 0
+    minutes = 0;
+    seconds = 0;                                                        // resets the timer
 };
 
 //function generates the deck array
@@ -88,12 +90,32 @@ const counterUp = function () {
 //function that creates a modal when all matches have been made
 const finished = function () {
     setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
-        const playAgain = confirm("You won with " + moves + " moves!\nPress OK to play again!");              // allows the last pair of cards does not display as matching
+        const playAgain = confirm("You won after " + moves + " moves!\nYour time was " + minutes + ":" + (seconds - 1) + "\nPress OK to play again!");              // allows the last pair of cards does not display as matching
         if (playAgain) {
             deal();
         }
     }, 100);
 };
+
+//makes timer counter work
+const timerUp = function () {
+    if (seconds < 10) {                             // adds leading 0 if necessary then adds text to HTML
+        secondsHTML.textContent = "0" + seconds;
+    } else{
+        secondsHTML.textContent = seconds;
+    }
+
+    seconds++;
+    if (seconds == 60) {
+        seconds = 0;                                // increments minutes
+        minutes++;
+        minutesHTML.textContent = minutes;
+    }
+}
+
+setInterval( function() {
+    timerUp();
+}, 1000);
 
 /* VARIABLES */
 
@@ -109,12 +131,16 @@ let moves = 0;
 
 //variables for timer
 let minutes = 0, seconds = 0;
+let minutesHTML = document.querySelector("#minutes");
+let secondsHTML = document.querySelector("#seconds");
 
 /* OTHER CODE */
 
 makeDeckArray();
 
 deal();
+
+
 
 //"Restart" event listener
 const restart = document.querySelector(".restart");
