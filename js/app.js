@@ -1,8 +1,8 @@
 /* FUNCTIONS */
 //function shows the card clicked
 const showCard = function (card) {
-    if (card.srcElement.classList.contains("open")) {
-        return;
+    if (card.srcElement.classList.contains("open") || card.srcElement.classList.contains("match")) {
+        return;                                 // ignores "click" if card is already shown or a match
     }
     if (openCards.length > 1) {                 // if there is more than one "open" card, hide the cards
         hideCards();
@@ -99,6 +99,7 @@ const finished = function () {
             deal();
         }
     }, 100);
+    clearInterval(timerInterval);
 };
 
 //makes timer counter work
@@ -118,7 +119,7 @@ const timerUp = function () {
 }
 
 //part of the timer
-setInterval( function() {
+var timerInterval = setInterval(function() {
     timerUp();                  // runs timerUp ever 1 second
 }, 1000);
 
