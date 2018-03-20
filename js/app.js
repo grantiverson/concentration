@@ -13,7 +13,7 @@ const showCard = function (card) {
     if (openCards.length > 1) {                 // if there is more than one "open" card, check to see if the cards match
         checkCards();
     }
-    counterUp();                                // increment the move counter
+    movesUp();                                // increment the move counter
 };
 
 //function adds ".match" if two cards match
@@ -64,6 +64,7 @@ const deal = function () {
     document.querySelector("span").textContent = moves;                 // resets the moves counter to 0
     minutes = 0;
     seconds = 0;                                                        // resets the timer
+    resetStarRating();                                                          // resets the stars counter
 };
 
 //function generates the deck array
@@ -79,9 +80,12 @@ function makeDeckArray() {
 }
 
 //function that controls the counter
-const counterUp = function () {
+const movesUp = function () {
     moves++;
     document.querySelector("span").textContent = moves;         // replaces the HTML in the span element with the number of moves
+    if (moves % 5 === 0 && moves < 46) {
+        starRating();
+    }
     if (document.querySelectorAll(".match").length === 16) {
         finished();
     }
@@ -90,7 +94,7 @@ const counterUp = function () {
 //function that creates a modal when all matches have been made
 const finished = function () {
     setTimeout(function() {                                          // setTimeout causes a slight delay before the alert window appears
-        const playAgain = confirm("You won after " + moves + " moves!\nYour time was " + minutes + ":" + (seconds - 1) + "\nPress OK to play again!");              // allows the last pair of cards does not display as matching
+        const playAgain = confirm("You won after " + moves + " moves!\nYou got " + stars + " stars.\nYour time was " + minutes + ":" + (seconds - 1) + "\nPress OK to play again!");              // allows the last pair of cards does not display as matching
         if (playAgain) {
             deal();
         }
@@ -113,9 +117,32 @@ const timerUp = function () {
     }
 }
 
+//part of the timer
 setInterval( function() {
-    timerUp();
+    timerUp();                  // runs timerUp ever 1 second
 }, 1000);
+
+const starRating = function () {
+    if (moves === 25) {
+        document.querySelector("#first-star").classList.add("fa-star-o");
+        stars = 2;
+    }
+    if (moves === 35) {
+        document.querySelector("#second-star").classList.add("fa-star-o");
+        stars = 1;
+    }
+    if (moves === 45) {
+        document.querySelector("#third-star").classList.add("fa-star-o");
+        stars = 0;
+    }
+}
+
+const resetStarRating = function () {
+    document.querySelector("#first-star").classList.remove("fa-star-o");
+    document.querySelector("#second-star").classList.remove("fa-star-o");
+    document.querySelector("#third-star").classList.remove("fa-star-o");
+    stars = 3;
+}
 
 /* VARIABLES */
 
@@ -129,6 +156,9 @@ let openCards = [];
 //Move counter
 let moves = 0;
 
+//Stars counter
+let stars = 3;
+
 //variables for timer
 let minutes = 0, seconds = 0;
 let minutesHTML = document.querySelector("#minutes");
@@ -139,8 +169,6 @@ let secondsHTML = document.querySelector("#seconds");
 makeDeckArray();
 
 deal();
-
-
 
 //"Restart" event listener
 const restart = document.querySelector("#restart");
