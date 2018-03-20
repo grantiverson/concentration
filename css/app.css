@@ -40,7 +40,7 @@ h1 {
     margin-left: 25px;
 }
 
-.restart {
+#restart {
     float: right;
     cursor: pointer;
     margin-left: 20px;

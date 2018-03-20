@@ -143,7 +143,7 @@ deal();
 
 
 //"Restart" event listener
-const restart = document.querySelector(".restart");
+const restart = document.querySelector("#restart");
 restart.addEventListener("click", deal);
 
 //"Click a card" event listener
