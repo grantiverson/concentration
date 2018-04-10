@@ -1,6 +1,6 @@
 # Concentration
 
-I made this game as a project for my Front-End Web Development Nanodegree from Udacity.
+I made this game as a project for my Front-End Web Development Nanodegree from Udacity. It demonstrates how JavaScript can be used to manipulate the DOM.
 
 ## How to play
 
