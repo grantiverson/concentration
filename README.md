@@ -19,7 +19,7 @@ When you click a card, it will flip over to display a symbol. If you flip over t
 
 ## Download
 
-These instructions will allow you to get a copy of the project that runs on your local machine
+These instructions will allow you to get a copy of the project that runs on your local machine.
 
 ### Prerequisites
 
