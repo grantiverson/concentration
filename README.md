@@ -4,7 +4,7 @@ I made this game as a project for my Front-End Web Development Nanodegree from U
 
 ## Run live
 
-Run it live at [concentration.iverson.io](http://concentration.iverson.io)
+Run it live at [iverson.io/projects/concentration](https://iverson.io/projects/concentration)
 
 ### How to play
 
